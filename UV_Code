@@ -1,0 +1,74 @@
+#include<Servo.h> Servo Myservo; int motor_l1=4;
+int motor_l2=5; int motor_r1=6; int motor_r2=7; int pos;
+bool s;
+const int indsens = 2; const int capsens = 8; int indvalue,capvalue;
+
+void setup()
+{
+Myservo.attach(3);
+
+
+pinMode(indsens, INPUT); pinMode(capsens, INPUT); pinMode(motor_l1, OUTPUT); pinMode(motor_l2, OUTPUT); pinMode(motor_r1, OUTPUT); pinMode(motor_r2, OUTPUT); Serial.begin(9600);
+}
+
+
+void loop()
+{
+
+
+//open bin
+
+for(pos=0;pos<=70;pos++)
+{
+Myservo.write(pos); delay(15);
+}
+
+
+//close bin for(pos=70;pos>=0;pos--)
+{
+Myservo.write(pos); delay(15);
+}
+
+
+//metal indvalue=digitalRead(indsens); if(indvalue==LOW)
+{
+//clockwise clockwise();
+}
+else
+{
+//anti-clockwise anti_clockwise();
+}
+
+
+//plastic capvalue=digitalRead(capsens); if(capvalue==HIGH)
+{
+
+//clockwise clockwise();
+}
+else
+{
+//stop belt, centre-shaft on csforward();
+
+delay(3000);
+
+
+//centre-shaft returns to position csbackward();
+}
+}
+void clockwise()
+{
+digitalWrite(motor_l1, HIGH); digitalWrite(motor_l2, LOW); digitalWrite(motor_r1, LOW); digitalWrite(motor_r2, LOW);
+}
+void anti_clockwise()
+{
+digitalWrite(motor_l1, LOW); digitalWrite(motor_l2, HIGH); digitalWrite(motor_r1, LOW); digitalWrite(motor_r2, LOW);
+}
+void csforward()
+{
+
+digitalWrite(motor_l1, LOW); digitalWrite(motor_l2, LOW); digitalWrite(motor_r1, HIGH); digitalWrite(motor_r2, LOW);
+}
+void csbackward()
+{
+digitalWrite(motor_l1, LOW); digitalWrite(motor_l2, LOW); digitalWrite(motor_r1, LOW); digitalWrite(motor_r2, HIGH);
+}
